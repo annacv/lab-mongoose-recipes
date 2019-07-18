@@ -42,5 +42,22 @@ const addManyRecipes = async (data) => {
   }
 }
 
+// update recipe
+/*
+const updateRecipe = async (data) => {
+  try {
+    data = Recipe.title('Rigatoni alla Genovese');
+    const newDuration = { duration: 100};
+    Recipe.findOneAndUpdate(newDuration, {this.duration};
+    console.log('Success!');
+  }
+  catch(error) {
+    console.log(error);
+  }
+}
+*/
+// Recipe.findOneAndUpdate({duration: 220}, {$set: {duration: 100}});
+
 createOneRecipe();
 addManyRecipes(data);
+//updateRecipe();
