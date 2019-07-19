@@ -43,21 +43,32 @@ const addManyRecipes = async (data) => {
 }
 
 // update recipe
-/*
-const updateRecipe = async (data) => {
+
+const updateDurationRecipe = async (title, duration) => {
   try {
-    data = Recipe.title('Rigatoni alla Genovese');
-    const newDuration = { duration: 100};
-    Recipe.findOneAndUpdate(newDuration, {this.duration};
-    console.log('Success!');
+    const response = await Recipe.findOneAndUpdate({title}, {duration}, {new: true}); // 1st param= find, 2nd= value to update; new:true --> makes show the right result 
+    console.log(response);
+    console.log('Success!')
   }
   catch(error) {
     console.log(error);
   }
 }
-*/
-// Recipe.findOneAndUpdate({duration: 220}, {$set: {duration: 100}});
+
+// delete recipe
+const deleteOneRecipe = (title) => {
+  try {
+    const response = await Recipe.deleteOne({title})
+    console.log(response);
+    console.log('recipe deleted');
+  }
+  catch(error) {
+    console.log(error);
+  }
+}
+
 
 createOneRecipe();
 addManyRecipes(data);
-//updateRecipe();
+updateDurationRecipe('Rigatoni alla Genovese', 100);
+deleteOneRecipe('Carrot Cake');
