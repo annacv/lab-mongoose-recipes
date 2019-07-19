@@ -67,8 +67,21 @@ const deleteOneRecipe = (title) => {
   }
 }
 
+// empty collection to avoid unique keys error & automatize the manual deletion at start, useful for this case, not as rule
+const emptyCollection = async() => {
+  await Recipe.deleteMany();
+  console.log('collection deleted')
+}
 
-createOneRecipe();
-addManyRecipes(data);
-updateDurationRecipe('Rigatoni alla Genovese', 100);
-deleteOneRecipe('Carrot Cake');
+// Run tasks awaiting response, if not, code will try to execute all methods without having data, or the previous method is finished
+const doExercise = async () => {
+  await emptyCollection();
+  await createOneRecipe();
+  await addManyRecipes(data);
+  await updateDurationRecipe('Rigatoni alla Genovese', 100);
+  await deleteOneRecipe('Carrot Cake');
+
+  mongoose.connection.close();
+}
+
+doExercise();
